@@ -1,4 +1,4 @@
-module github.com/logzio/azure-monitor-metrics-receiver
+module github.com/jojokoshy/azure-monitor-metrics-receiver
 
 go 1.17
 
