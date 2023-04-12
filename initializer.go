@@ -14,6 +14,20 @@ const (
 	// MaxMetricsPerRequest is max metrics per request to Azure Monitor API.
 	MaxMetricsPerRequest = 20
 )
+//CreateAzureClients using Workload Identity 
+func CreateMIAzureClients(subscriptionID string) (*AzureClients, error) {
+	credential, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating Azure client credential using Managed Identity: %v", err)
+	}
+
+	return &AzureClients{
+		Ctx:                     context.Background(),
+		ResourcesClient:         newAzureMIResourcesClient(subscriptionID, credential),
+		MetricsClient:           armmonitor.NewMetricsClient(credential, nil),
+		MetricDefinitionsClient: armmonitor.NewMetricDefinitionsClient(credential, nil),
+	}, nil
+}
 
 // CreateAzureClients creates Azure clients.
 func CreateAzureClients(subscriptionID string, clientID string, clientSecret string, tenantID string) (*AzureClients, error) {

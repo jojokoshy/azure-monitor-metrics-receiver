@@ -137,6 +137,12 @@ func NewResource(resourceType string, metrics []string, aggregations []string) *
 	}
 }
 
+func newAzureMIResourcesClient(subscriptionID string, credential *azidentity.DefaultAzureCredential) *azureResourcesClient {
+	return &azureResourcesClient{
+		client: armresources.NewClient(subscriptionID, credential, nil),
+	}
+}
+
 func newAzureResourcesClient(subscriptionID string, credential *azidentity.ClientSecretCredential) *azureResourcesClient {
 	return &azureResourcesClient{
 		client: armresources.NewClient(subscriptionID, credential, nil),
