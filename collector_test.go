@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
-
+// Only for test
 func TestCollectResourceTargetMetrics_AllDataWithValues(t *testing.T) {
 	ammr := &AzureMonitorMetricsReceiver{
 		Targets: NewTargets(

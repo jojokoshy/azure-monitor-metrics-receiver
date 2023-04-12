@@ -1,7 +1,7 @@
 module github.com/jojokoshy/azure-monitor-metrics-receiver
 
 go 1.17
-
+// mande changes for go 1.17 and renamed module to github.com/jojokoshy/azure-monitor-metrics-receiver
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azidentity v0.13.2
 	github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/monitor/armmonitor v0.4.1
