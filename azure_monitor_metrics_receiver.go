@@ -139,13 +139,15 @@ func NewResource(resourceType string, metrics []string, aggregations []string) *
 
 // method newAzureMIResourcesClient adds a new Azure resources client that uses Azure Managed Identity. Here DefaultAzureCredentials is used
 func newAzureMIResourcesClient(subscriptionID string, credential *azidentity.DefaultAzureCredential) *azureResourcesClient {
+	fmt.Println("Inside the newAzureMIResourcesClient for Managed Identity")
 	return &azureResourcesClient{
 		client: armresources.NewClient(subscriptionID, credential, nil),
 	}
 }
 
-// method newAzureResourcesClient adds a new Azure resources client that uses Azure Client Secret. Here ClientSecretCredentials is used
+// method newAzureResourcesClient adds a new Azure resources client that uses Azure Client Secret. Here ClientSecretCredentials is used .
 func newAzureResourcesClient(subscriptionID string, credential *azidentity.ClientSecretCredential) *azureResourcesClient {
+	fmt.Println("Inside the AzureResourceClient for Service Principal")
 	return &azureResourcesClient{
 		client: armresources.NewClient(subscriptionID, credential, nil),
 	}

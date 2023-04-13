@@ -15,8 +15,9 @@ const (
 	MaxMetricsPerRequest = 20
 )
 
-// CreateAzureClients using Workload Identity . this function initializes the AzureClients struct with the credentials provided by the Workload Identity
+// CreateAzureClients using Workload Identity .. this function initializes the AzureClients struct with the credentials provided by the Workload Identity
 func CreateMIAzureClients(subscriptionID string) (*AzureClients, error) {
+	fmt.Println("Creating Azure clients using Managed Identity")
 	credential, err := azidentity.NewDefaultAzureCredential(nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating Azure client credential using Managed Identity: %v", err)
@@ -33,6 +34,7 @@ func CreateMIAzureClients(subscriptionID string) (*AzureClients, error) {
 
 // CreateAzureClients creates Azure clients using the provided credentials. This function initializes the AzureClients struct with the credentials provided by the user
 func CreateAzureClients(subscriptionID string, clientID string, clientSecret string, tenantID string) (*AzureClients, error) {
+	fmt.Println("Creating Azure clients using Service Principal")
 	credential, err := azidentity.NewClientSecretCredential(tenantID, clientID, clientSecret, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating Azure client credential: %v", err)
